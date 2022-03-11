@@ -1,3 +1,24 @@
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    mySprite.ay = -400
+    if (tiles.tileAtLocationEquals(location, assets.tile`rainbow`)) {
+        tiles.setTileAt(location, assets.tile`rainbow0`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow0`)) {
+        tiles.setTileAt(location, assets.tile`rainbow7`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow7`)) {
+        tiles.setTileAt(location, assets.tile`rainbow8`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow8`)) {
+        tiles.setTileAt(location, assets.tile`rainbow9`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow9`)) {
+        tiles.setTileAt(location, assets.tile`rainbow10`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow10`)) {
+        tiles.setTileAt(location, assets.tile`rainbow11`)
+    } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow11`)) {
+        tiles.setTileAt(location, assets.tile`transparency16`)
+        tiles.setWallAt(location, false)
+    } else {
+    	
+    }
+})
 sprites.onCreated(SpriteKind.Food, function (sprite) {
     sprite.setScale(0.5, ScaleAnchor.Middle)
     sprite.setPosition(80, 10)
@@ -5,8 +26,9 @@ sprites.onCreated(SpriteKind.Food, function (sprite) {
 sprites.onCreated(SpriteKind.Player, function (sprite) {
     sprite.setPosition(10, 10)
 })
+let mySprite: Sprite = null
 let gravity = 9.8
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -43,6 +65,7 @@ let mySprite2 = sprites.create(img`
     . . . . . . . . . c c c c c . . 
     `, SpriteKind.Food)
 tiles.setCurrentTilemap(tilemap`レベル1`)
+let directY = 1
 game.onUpdate(function () {
-    mySprite.ay += gravity
+    mySprite.ay += directY * gravity
 })
