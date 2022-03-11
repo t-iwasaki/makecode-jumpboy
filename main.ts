@@ -1,5 +1,5 @@
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    mySprite.ay = -400
+    mySprite.ay = -250
     if (tiles.tileAtLocationEquals(location, assets.tile`rainbow`)) {
         tiles.setTileAt(location, assets.tile`rainbow0`)
     } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow0`)) {
@@ -14,9 +14,9 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         tiles.setTileAt(location, assets.tile`rainbow11`)
     } else if (tiles.tileAtLocationEquals(location, assets.tile`rainbow11`)) {
         tiles.setTileAt(location, assets.tile`transparency16`)
-        tiles.setWallAt(location, false)
     } else {
-    	
+        tiles.setWallAt(location, false)
+        game.over(false)
     }
 })
 sprites.onCreated(SpriteKind.Food, function (sprite) {
@@ -68,4 +68,5 @@ tiles.setCurrentTilemap(tilemap`レベル1`)
 let directY = 1
 game.onUpdate(function () {
     mySprite.ay += directY * gravity
+    mySprite.x += controller.dx()
 })
